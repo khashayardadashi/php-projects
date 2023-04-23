@@ -10,10 +10,10 @@
 <body>
 <select>
     <?php
-    $i=1390;
-    while($i!=1410){
+    $i=1300;
+    while($i!=1403){
         echo '<option>'.$i.'</option>';
-        if ($i==1407){
+        if ($i==1402){
             break;
         }
         else{
