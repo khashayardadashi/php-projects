@@ -1,13 +1,16 @@
 <?php
-$total=0;
-for($i=0;$i!=100;){
-    if($i%2==0){
-        $i++;
-        $total++;
+function primenumber()
+{
+    $total = 0;
+    for ($i = 0; $i != 100;) {
+        if ($i % 2 == 0) {
+            $i++;
+            $total++;
+        } else {
+            $i++;
+        }
     }
-    else{
-        $i++;
-    }
+    echo $total;
 }
-echo $total;
+primenumber();
 ?>
