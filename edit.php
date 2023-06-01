@@ -15,7 +15,7 @@ $mysql = mysqli_connect('localhost:3306', 'root', 'khashayar1383', 'php');
         die();
     }
     $user=mysqli_fetch_assoc($result);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' and ! is_null($user)) {
             if(isset($_POST['btn'])==true) {
             $function = mysqli_prepare($mysql, "update users set username=? , email=?, pass=? where id =?");
             mysqli_stmt_bind_param($function, 'sssi', $_POST['username'], $_POST['email'], $_POST['password'], $user['id']);
