@@ -1,42 +1,53 @@
-<!doctype html>
-<?php
-if(isset($_POST['btn'])==true){
-    $username=$_POST['username'];
-    $email=$_POST['email'];
-    $password=$_POST['password'];
-}
-$connect=mysqli_connect('localhost:3306','root','khashayar1383',
-    'php');
-$sql="INSERT INTO users (username,email,pass) VALUES ('$username','$email','$password') ";
-mysqli_query($connect,$sql);
-?>
-<html>
+<!DOCTYPE html>
+<html >
 <head>
-    <link rel="stylesheet" href="style.css">
-    <title>khashayar.ir</title>
+  <meta charset="UTF-8">
+  <title>گزارش کاربر ها</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <?php
+    if ($mysql=mysqli_connect('localhost:3306' ,'root','','php')){
+        $function='SELECT * FROM USERS';
+        $run=mysqli_query($mysql,$function);
+    }
+    else{
+        echo'Error' . mysqli_connect_error();
+    }
+
+    ?>
 </head>
+
 <body>
-<div class='main'>
-    <div class="right">
-        <form action="" method="post">
-            <label>نام کاربری:</label>
-            <input type="text" name="username">
-            <label>ایمیل:</label>
-            <input type="email" name="email">
-            <label>رمز عبور:</label>
-            <input type="password" name="password">
-            <button  class='btn' type="submit" name="btn"><b>ورود</b></button>
-            <button class='btn' type="submit"><b>ثبت نام</b></button>
-        </form>
+  <div class="wrapper">
+
+  <div class="table">
+
+    <div class="row header blue">
+      <div class="cell">
+Username
+      </div>
+      <div class="cell">
+Email
+      </div>
+      <div class="cell">
+Password
+      </div>
     </div>
-    <div class="left">
-        <img src='home-page-top.webp'>
-    </div>
+<?php while($result=mysqli_fetch_assoc($run)){ ?>
+    <div class="row">
+      <div class="cell">
+          <?php  echo $result['username'];?>
+      </div>
+      <div class="cell">
+          <?php  echo $result['email']; ?>
 </div>
-<footer>
-    <div class="footer1">
-        تمام حقوق سایت محفوظ است
+      <div class="cell">
+          <?php echo $result['pass']; ?>
+      </div>
     </div>
-</footer>
+<?php }?>
+</div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 </body>
 </html>
