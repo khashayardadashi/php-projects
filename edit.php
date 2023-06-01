@@ -4,7 +4,7 @@ if (isset($_GET['id'])==false){
     header('Location: database.php');
     die();
 }
-$mysql = mysqli_connect('localhost:3306', 'root', 'khashayar1383', 'php');
+$mysql = mysqli_connect('localhost:3306', 'root', '', 'php');
     $function = mysqli_prepare($mysql,"select * from users where id = ?");
     $id=(int) $_GET['id'];
     mysqli_stmt_bind_param($function,'i',$id);
