@@ -29,8 +29,6 @@ $mysql = mysqli_connect('localhost:3306', 'root', 'khashayar1383', 'php');
                 header('Location:database.php');
             }
         }
-
-
 ?>
 <html>
 <head>
