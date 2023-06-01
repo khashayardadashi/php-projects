@@ -15,14 +15,22 @@ $mysql = mysqli_connect('localhost:3306', 'root', 'khashayar1383', 'php');
         die();
     }
     $user=mysqli_fetch_assoc($result);
-    if(isset($_POST['btn'])==true) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(isset($_POST['btn'])==true) {
             $function = mysqli_prepare($mysql, "update users set username=? , email=?, pass=? where id =?");
             mysqli_stmt_bind_param($function, 'sssi', $_POST['username'], $_POST['email'], $_POST['password'], $user['id']);
             mysqli_stmt_execute($function);
             header('Location:database.php');
+            }
+            if (isset($_POST['btn1'])==true) {
+                $function1 = mysqli_prepare($mysql, "DELETE FROM USERS WHERE id =?");
+                mysqli_stmt_bind_param($function1,'i',$user['id']);
+                mysqli_stmt_execute($function1);
+                header('Location:database.php');
+            }
         }
-    }
+
+
 ?>
 <html>
 <head>
@@ -43,6 +51,7 @@ $mysql = mysqli_connect('localhost:3306', 'root', 'khashayar1383', 'php');
             <br>
             <br>
             <button type="submit" name="btn"><b>ویرایش</b></button>
+            <button type="submit" name="btn1"><b>حذف</b></button>
         
         </form>
 </body>
